@@ -1,0 +1,88 @@
+create table customer_info2
+(
+    customer_id int auto_increment primary key,
+    customer_name varchar(50),
+    shop_name varchar(60),
+    address varchar(60),
+    email varchar(50),
+    phone_number int not null unique
+    )
+
+
+
+
+
+
+create table transaction2
+(
+    transaction_date text,
+    customer_id int,
+    phone_number int,
+    product_name varchar(50),
+    unite_price double,
+    number_of_product double,
+    total_expense_per_product double,
+    foreign key(customer_id) references 
+
+customer_info2(customer_id) on delete cascade
+)
+
+
+
+
+
+
+
+create table payment2
+(
+    customer_id int,
+    phone_number int,
+    transaction_date text,
+    total_expense double,
+    pay double,
+    due double,
+    constraint fkey foreign key(customer_id) references customer_info2(customer_id) on delete cascade
+    )
+
+
+
+
+
+
+create table totaldue
+(
+    transaction_date text,
+    customer_id int,
+    phone_number int,
+    pay double,
+    due double,
+    constraint fkey2 foreign key(customer_id) references customer_info2(customer_id) on delete cascade
+    )
+
+
+
+
+
+
+
+create table adminPassword
+(
+    password varchar(20)
+    )
+
+
+
+
+
+
+
+create table customerMessage
+(
+    sentDate varchar(50),
+    customer_id int,
+    customer_name varchar(50),
+    phn_no int,
+    message text,
+    message_check varchar(50),
+    constraint fkey5 foreign key(customer_id) references customer_info2(customer_id)on delete cascade
+    )
